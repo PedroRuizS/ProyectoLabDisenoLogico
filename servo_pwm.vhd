@@ -10,7 +10,7 @@ entity control_servo is
 end entity control_servo;
 
 architecture comportamiento of control_servo is
-    constant ciclo_duty: integer := 50; -- Ciclo de trabajo (50%)
+    variable ciclo_duty: integer := 50; -- Ciclo de trabajo (50%)
     signal contador: integer := 0;     -- Contador para el período del PWM
 begin
     -- Lógica del módulo de control del servo
@@ -33,7 +33,7 @@ begin
     proceso_ajuste: process (angulo_servo)
     begin
         if angulo_servo >= 0 and angulo_servo <= 180 then
-            ciclo_duty <= angulo_servo; -- Mapea el ángulo directamente al ciclo de trabajo
+            ciclo_duty := angulo_servo; -- Mapea el ángulo directamente al ciclo de trabajo
         end if;
     end process proceso_ajuste;
 end architecture comportamiento;

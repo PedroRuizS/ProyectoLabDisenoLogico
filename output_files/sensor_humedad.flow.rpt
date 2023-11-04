@@ -1,5 +1,5 @@
 Flow report for sensor_humedad
-Fri Nov 03 17:47:07 2023
+Sat Nov 04 00:04:50 2023
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -40,7 +40,7 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Flow Summary                                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Flow Status                        ; Flow Failed - Fri Nov 03 17:47:07 2023          ;
+; Flow Status                        ; Flow Failed - Sat Nov 04 00:04:50 2023          ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; sensor_humedad                                  ;
 ; Top-level Entity Name              ; sensor_humedad                                  ;
@@ -64,7 +64,7 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 11/03/2023 17:47:06 ;
+; Start date & time ; 11/04/2023 00:04:50 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; sensor_humedad      ;
 +-------------------+---------------------+
@@ -75,7 +75,7 @@ applicable agreement for further details.
 +-------------------------------------+--------------------------------+---------------+-------------+----------------------+
 ; Assignment Name                     ; Value                          ; Default Value ; Entity Name ; Section Id           ;
 +-------------------------------------+--------------------------------+---------------+-------------+----------------------+
-; COMPILER_SIGNATURE_ID               ; 66504342799501.169905522607912 ; --            ; --          ; --                   ;
+; COMPILER_SIGNATURE_ID               ; 66504342799501.169907789002068 ; --            ; --          ; --                   ;
 ; EDA_DESIGN_ENTRY_SYNTHESIS_TOOL     ; Synplify Pro                   ; <None>        ; --          ; --                   ;
 ; EDA_INPUT_DATA_FORMAT               ; Edif                           ; --            ; --          ; eda_design_synthesis ;
 ; EDA_LMF_FILE                        ; synplcty.lmf                   ; --            ; --          ; eda_design_synthesis ;
