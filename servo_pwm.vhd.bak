@@ -1,0 +1,36 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity control_servo is
+    port (
+        clk: in std_logic;                 -- Señal de reloj
+        angulo_servo: in integer range 0 to 180;  -- Ángulo del servo
+        servo_pwm: out std_logic           -- Señal de PWM para control del servo
+    );
+end entity control_servo;
+
+architecture comportamiento of control_servo is
+    constant ciclo_duty: integer := 50; -- Ciclo de trabajo (50%)
+    signal contador: integer := 0;     -- Contador para el período del PWM
+begin
+    -- Lógica del módulo de control del servo
+    proceso_pwm: process (clk)
+    begin
+        if rising_edge(clk) then
+            if contador < ciclo_duty then
+                servo_pwm <= '1'; -- Señal alta durante el ciclo de trabajo
+            else
+                servo_pwm <= '0'; -- Señal baja durante el ciclo de trabajo
+            end if;
+            contador <= contador + 1;  -- Incrementar el contador
+            if contador = 100 then  -- Ajusta este valor según la frecuencia de la señal de reloj
+                contador <= 0;
+            end if;
+        end if;
+    end process proceso_pwm;
+
+    -- Asigna el ángulo del servo al ciclo de trabajo
+    proceso_ajuste: process (angulo_servo)
+    begin
+        if angulo_servo >= 0 and angulo_servo <= 180 then
+            ciclo_duty <= angulo_servo; --

@@ -1,0 +1,8 @@
+set_global_assignment -name TOP_LEVEL_ENTITY sensor_humedad
+
+# Especificación del reloj de inicio (40 ns de período)
+create_clock -period 40.0 [get_ports inicio_tiempo]
+
+# Ubicación de los pines
+set_location_assignment PIN_10 -to pin_entrada
+set_location_assignment PIN_15 -to pin_salida

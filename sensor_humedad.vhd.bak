@@ -1,0 +1,59 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+use IEEE.numeric_std.all;
+
+entity sensor_humedad is
+    port (
+        pin_entrada: in std_logic_vector(7 downto 0);
+        pin_salida: out std_logic;
+        inicio_tiempo: in std_logic;
+        clk: in std_logic
+    );
+end entity sensor_humedad;
+
+architecture comportamiento of sensor_humedad is
+    signal datos_sensor: std_logic_vector(39 downto 0);
+    signal humedad: std_logic_vector(15 downto 0);
+    signal temperatura: std_logic_vector(15 downto 0);
+    signal checksuma: std_logic_vector(7 downto 0);
+    signal datos_validos: std_logic := '0';
+
+begin
+    proceso_sensor: process (clk)
+    begin
+        if rising_edge(clk) then
+            if inicio_tiempo = '0' then
+                datos_sensor <= (others => '0');
+            end if;
+
+            datos_sensor <= datos_sensor(38 downto 0) & pin_entrada & '0';
+
+            pin_salida <= '1';
+
+            if datos_sensor(39) = '1' then
+                humedad <= datos_sensor(38 downto 23);
+                temperatura <= datos_sensor(22 downto 7);
+                checksuma <= datos_sensor(7 downto 0);
+
+                if (to_integer(unsigned(checksuma)) = to_integer(unsigned(humedad)) + to_integer(unsigned(temperatura))) then
+                    datos_validos <= '1';
+                else
+                    datos_validos <= '0';
+                end if;
+            end if;
+        end if;
+    end process proceso_sensor;
+
+    -- Proceso para el manejo de umbrales
+    process
+    begin
+        wait until rising_edge(clk);
+        if (datos_validos = '1') then
+            -- Hacer algo con la humedad y la temperatura si los datos son válidos
+            -- Ejemplo: if to_integer(unsigned(temperatura)) > 25 then
+            -- Aquí puedes agregar tu lógica para manejar umbrales
+        else
+            -- Manejar los datos no válidos
+        end if;
+    end process;
+end architecture comportamiento;

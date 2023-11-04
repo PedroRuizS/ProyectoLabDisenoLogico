@@ -1,0 +1,18 @@
+set_global_assignment -name TOP_LEVEL_ENTITY sensor_humedad
+
+# Especificación del reloj de inicio (40 ns de período)
+create_clock -period 40.0 [get_ports inicio_tiempo]
+
+# Ubicación de los pines
+set_location_assignment PIN_10 -to pin_entrada
+set_location_assignment PIN_15 -to pin_salida
+
+# Configuración del servo PWM
+# Asignación del pin para la señal PWM del servo
+set_location_assignment PIN_14 -to servo_pwm_pin
+# Establecer el tipo de señal como PWM
+set_instance_assignment -name IO_STANDARD "3.3 V" -to servo_pwm_pin
+# Definir la frecuencia PWM (ajusta esto según las especificaciones de tu servo)
+set_instance_assignment -name PERIOD "12500 ps" -to servo_pwm_pin
+# Definir el ciclo de trabajo PWM (ajusta esto según las especificaciones de tu servo)
+set_instance_assignment -name DUTY_CYCLE 50 -to servo_pwm_pin
