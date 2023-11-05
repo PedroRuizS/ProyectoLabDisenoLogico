@@ -16,3 +16,14 @@ set_instance_assignment -name IO_STANDARD "3.3 V" -to servo_pwm_pin
 set_instance_assignment -name PERIOD "12500 ps" -to servo_pwm_pin
 # Definir el ciclo de trabajo PWM (ajusta esto según las especificaciones de tu servo)
 set_instance_assignment -name DUTY_CYCLE 50 -to servo_pwm_pin
+
+# Configuración de la velocidad de cambio de los pines de salida
+set_instance_assignment -name SLEW FAST -to pin_salida
+set_instance_assignment -name SLEW FAST -to servo_pwm_pin
+
+# Configuración de VCC
+NET "VCC" IOSTANDARD = LVCMOS33;
+
+# Configuración de GND
+NET "GND" IOSTANDARD = LVCMOS33;
+

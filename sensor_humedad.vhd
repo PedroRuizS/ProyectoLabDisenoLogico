@@ -16,13 +16,13 @@ end entity sensor_humedad;
 architecture comportamiento of sensor_humedad is
 
     constant umbral_humedad: integer := 40;
-    constant media_rotacion: integer := 90;
+    constant umbral_temperatura: integer := 20;
 
     signal datos_sensor: std_logic_vector(39 downto 0);
     signal humedad: std_logic_vector(15 downto 0);
     signal checksuma: std_logic_vector(7 downto 0);
     signal datos_validos: std_logic := '0';
-
+    signal temperatura: std_logic_vector(15 downto 0);
     signal pin_entrada_init: std_logic_vector(7 downto 0) := "00000000";
 
     signal angulo_descanso: integer;
@@ -48,7 +48,7 @@ begin
 
                 humedad <= datos_sensor(38 downto 23);
                 checksuma <= datos_sensor(7 downto 0);
-
+                temperatura <= datos_sensor(22 downto 7);
                 datos_validos <= '1';
 
             else
@@ -95,7 +95,21 @@ begin
             if (servo_angulo = 0) then
                 servo_pwm <= '0';  -- El servo está en su posición de descanso
             end if;
+
+            -- Nueva condición
+            if (datos_validos = '1' and to_integer(unsigned(temperatura)) < umbral_temperatura) then
+
+                -- El servo se activa y se mueve a media rotación
+                angulo_descanso <= to_integer(unsigned(media_rotacion));
+                servo_angulo <= angulo_descanso;
+                servo_pwm <= '1';
+
+            else
+
+                -- El servo se mantiene en su posición de descanso
+                servo_pwm <= '0';
+
+            end if;
+
         end if;
     end process proceso_control;
-
-end architecture comportamiento;
