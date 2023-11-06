@@ -4,7 +4,7 @@ set_global_assignment -name TOP_LEVEL_ENTITY sensor_humedad
 create_clock -period 20.0 [get_ports inicio_tiempo]
 
 # Ubicación de los pines
-set_location_assignment PIN_10 -to pin_entrada
+set_location_assignment PIN_16 -to pin_entrada
 set_location_assignment PIN_15 -to pin_salida
 
 # Configuración del servo PWM
